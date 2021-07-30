@@ -11,4 +11,6 @@ require (
 	github.com/mattn/go-isatty v0.0.13 // indirect
 	github.com/pelletier/go-toml v1.9.3 // indirect
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
+	gorm.io/driver/mysql v1.1.1 // indirect
+	gorm.io/gorm v1.21.12 // indirect
 )
