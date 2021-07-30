@@ -14,5 +14,8 @@ func Init() {
 	r.GET("/api/cards/:id", cc.Show)
 	r.DELETE("/api/cards/:id", cc.Delete)
 
+	fc := controllers.FilesController{}
+	r.POST("/api/files", fc.Store)
+
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
