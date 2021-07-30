@@ -8,9 +8,10 @@ import (
 )
 
 type CardsController struct {
+	BaseController
 }
 
-func (*CardsController) Create(c *gin.Context) {
+func (controller *CardsController) Create(c *gin.Context) {
 	_card := card.Card{
 		CategoryId:   types.StringToInt(c.PostForm("category_id")),
 		GoodsNumber:  c.PostForm("goods_number"),
@@ -23,18 +24,11 @@ func (*CardsController) Create(c *gin.Context) {
 
 	_card.Create()
 
-	c.JSON(200, gin.H{
-		"code":    20000,
-		"data":    nil,
-		"message": "success",
-	})
+	controller.success(c, nil, "success")
 }
 
-func (*CardsController) Index(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"code": 20000,
-		"data": card.Index(),
-	})
+func (controller *CardsController) Index(c *gin.Context) {
+	controller.success(c, card.Index(), "success")
 }
 
 func (*CardsController) Show(c *gin.Context) {
