@@ -43,3 +43,9 @@ func Index() []Card {
 
 	return cards
 }
+
+func Show(id string) Card {
+	var card Card
+	bootstrap.DB.First(&card, id)
+	return card
+}

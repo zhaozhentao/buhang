@@ -31,8 +31,8 @@ func (controller *CardsController) Index(c *gin.Context) {
 	controller.success(c, card.Index(), "success")
 }
 
-func (*CardsController) Show(c *gin.Context) {
-	c.String(http.StatusOK, "Show")
+func (controller *CardsController) Show(c *gin.Context) {
+	controller.success(c, card.Show(c.Param("id")), "success")
 }
 
 func (*CardsController) Delete(c *gin.Context) {
