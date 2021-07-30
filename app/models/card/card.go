@@ -12,8 +12,8 @@ type Card struct {
 	GoodsNumber  string    `json:"goods_number"`
 	GoodsName    string    `json:"goods_name"`
 	Weight       string    `json:"weight"`
-	MeterPerKilo float32   `json:"meter_per_kilo"`
-	Width        float32   `json:"width"`
+	MeterPerKilo float64   `json:"meter_per_kilo"`
+	Width        float64   `json:"width"`
 	Sort         int       `json:"sort"`
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`
@@ -23,11 +23,22 @@ func (Card) TableName() string {
 	return "card"
 }
 
+func (c *Card) Create() (err error) {
+	if err = bootstrap.DB.Create(&c).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func Index() []Card {
 	var cards []Card
 
 	if err := bootstrap.DB.Find(&cards).Error; err != nil {
 		return cards
+	}
+
+	for i := range cards {
+		cards[i].Img = "http://www" + cards[i].Img
 	}
 
 	return cards

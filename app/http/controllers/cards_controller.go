@@ -11,19 +11,30 @@ type CardsController struct {
 }
 
 func (*CardsController) Create(c *gin.Context) {
+	_card := card.Card{
+		CategoryId:   types.StringToInt(c.PostForm("category_id")),
+		GoodsNumber:  c.PostForm("goods_number"),
+		GoodsName:    c.PostForm("goods_name"),
+		Weight:       c.PostForm("weight"),
+		Width:        types.StringToFloat(c.PostForm("width")),
+		Img:          c.PostForm("img"),
+		MeterPerKilo: types.StringToFloat(c.PostForm("meterPerKilo")),
+	}
+
+	_card.Create()
+
 	c.JSON(200, gin.H{
-		"categoryId":   types.StringToInt(c.PostForm("category_id")),
-		"goodsNumber":  c.PostForm("goods_number"),
-		"goods_name":   c.PostForm("goods_name"),
-		"weight":       c.PostForm("weight"),
-		"width":        c.PostForm("width"),
-		"img":          c.PostForm("img"),
-		"meterPerKilo": c.PostForm("meterPerKilo"),
+		"code":    20000,
+		"data":    nil,
+		"message": "success",
 	})
 }
 
 func (*CardsController) Index(c *gin.Context) {
-	c.JSON(http.StatusOK, card.Index())
+	c.JSON(http.StatusOK, gin.H{
+		"code": 20000,
+		"data": card.Index(),
+	})
 }
 
 func (*CardsController) Show(c *gin.Context) {

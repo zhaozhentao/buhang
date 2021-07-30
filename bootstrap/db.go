@@ -13,7 +13,7 @@ func Init() {
 	var _ error
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=%t&loc=%s",
-		"root", "123456", "172.18.40.9", "3306", "bubu", "utf8", true, "Local")
+		"root", "123456", "localhost", "3306", "bubu", "utf8", true, "Local")
 
 	gormConfig := mysql.New(mysql.Config{
 		DSN: dsn,
