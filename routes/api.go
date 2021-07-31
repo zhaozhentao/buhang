@@ -5,25 +5,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var R *gin.Engine
+
 func Init() {
-	r := gin.Default()
+	R = gin.Default()
 
 	cc := controllers.CardsController{}
-	r.POST("/api/cards", cc.Create)
-	r.GET("/api/cards", cc.Index)
-	r.GET("/api/cards/:id", cc.Show)
-	r.DELETE("/api/cards/:id", cc.Delete)
+	R.POST("/api/cards", cc.Create)
+	R.GET("/api/cards", cc.Index)
+	R.GET("/api/cards/:id", cc.Show)
+	R.DELETE("/api/cards/:id", cc.Delete)
 
 	fc := controllers.FilesController{}
-	r.POST("/api/files", fc.Store)
+	R.POST("/api/files", fc.Store)
 
 	cgc := controllers.CategoriesController{}
-	r.GET("/api/categories", cgc.Index)
-	r.POST("/api/categories", cgc.Create)
-	r.PATCH("/api/categories/:id", cgc.Update)
-	r.DELETE("/api/categories/:id", cgc.Delete)
-
-	r.Static("/manager", "./public/manager")
-
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	R.GET("/api/categories", cgc.Index)
+	R.POST("/api/categories", cgc.Create)
+	R.PATCH("/api/categories/:id", cgc.Update)
+	R.DELETE("/api/categories/:id", cgc.Delete)
 }
