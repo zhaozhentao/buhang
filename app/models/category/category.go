@@ -2,6 +2,7 @@ package category
 
 import (
 	"buhang/bootstrap"
+	"buhang/pkg/types"
 	"fmt"
 	"time"
 )
@@ -29,4 +30,9 @@ func List() []Category {
 	var categories []Category
 	bootstrap.DB.Find(&categories)
 	return categories
+}
+
+func Update(id string, columns interface{}) {
+	var category = Category{ID: types.StringToInt(id)}
+	bootstrap.DB.Model(&category).Updates(columns)
 }

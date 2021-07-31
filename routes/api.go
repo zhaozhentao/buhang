@@ -20,6 +20,7 @@ func Init() {
 	cgc := controllers.CategoriesController{}
 	r.GET("/api/categories", cgc.Index)
 	r.POST("/api/categories", cgc.Create)
+	r.PATCH("/api/categories/:id", cgc.Update)
 
 	r.Static("/manager", "./public/manager")
 
