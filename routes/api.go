@@ -21,6 +21,7 @@ func Init() {
 	r.GET("/api/categories", cgc.Index)
 	r.POST("/api/categories", cgc.Create)
 	r.PATCH("/api/categories/:id", cgc.Update)
+	r.DELETE("/api/categories/:id", cgc.Delete)
 
 	r.Static("/manager", "./public/manager")
 

@@ -22,3 +22,8 @@ func (cc *CategoriesController) Update(c *gin.Context) {
 	category.Update(c.Query("id"), category.Category{Name: c.Query("name")})
 	cc.success(c, nil, "success")
 }
+
+func (cc *CategoriesController) Delete(c *gin.Context) {
+	category.Delete(c.Param("id"))
+	cc.success(c, nil, "success")
+}

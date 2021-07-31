@@ -36,3 +36,10 @@ func Update(id string, columns interface{}) {
 	var category = Category{ID: types.StringToInt(id)}
 	bootstrap.DB.Model(&category).Updates(columns)
 }
+
+func Delete(id string) {
+	var category = Category{ID: types.StringToInt(id)}
+	if err := bootstrap.DB.Delete(&category).Error; err != nil {
+		fmt.Println(err)
+	}
+}
