@@ -17,6 +17,10 @@ func Init() {
 	fc := controllers.FilesController{}
 	r.POST("/api/files", fc.Store)
 
+	cgc := controllers.CategoriesController{}
+	r.GET("/api/categories", cgc.Index)
+	r.POST("/api/categories", cgc.Create)
+
 	r.Static("/manager", "./public/manager")
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
