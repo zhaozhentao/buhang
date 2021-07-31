@@ -24,6 +24,9 @@ func Init() {
 	r.PATCH("/api/categories/:id", cgc.Update)
 	r.DELETE("/api/categories/:id", cgc.Delete)
 
+	cic := controllers.CardItemsController{}
+	r.POST("/api/cardItems", cic.Create)
+
 	r.Static("/manager", "./public/manager")
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

@@ -12,7 +12,7 @@ type FilesController struct {
 func (FilesController) Store(c *gin.Context) {
 	file, _ := c.FormFile("file")
 
-	fileName := fmt.Sprintf("%d%s", time.Now().UnixNano(), file.Filename)
+	fileName := fmt.Sprintf("%d%s", time.Now().UnixNano()/1e6, file.Filename)
 
 	c.SaveUploadedFile(file, "./storage/images/"+fileName)
 
