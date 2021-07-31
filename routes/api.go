@@ -12,6 +12,7 @@ func Init() {
 	r.POST("/api/cards", cc.Create)
 	r.GET("/api/cards", cc.Index)
 	r.GET("/api/cards/:id", cc.Show)
+	r.GET("/api/cards/:id/card_items", cc.Items)
 	r.DELETE("/api/cards/:id", cc.Delete)
 
 	fc := controllers.FilesController{}
