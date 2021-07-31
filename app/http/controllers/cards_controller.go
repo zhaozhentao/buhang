@@ -13,13 +13,13 @@ type CardsController struct {
 
 func (controller *CardsController) Create(c *gin.Context) {
 	_card := card.Card{
-		CategoryId:   types.StringToInt(c.PostForm("category_id")),
-		GoodsNumber:  c.PostForm("goods_number"),
-		GoodsName:    c.PostForm("goods_name"),
-		Weight:       c.PostForm("weight"),
-		Width:        types.StringToFloat(c.PostForm("width")),
-		Img:          c.PostForm("img"),
-		MeterPerKilo: types.StringToFloat(c.PostForm("meterPerKilo")),
+		CategoryId:   types.StringToInt(c.Query("category_id")),
+		GoodsNumber:  c.Query("goods_number"),
+		GoodsName:    c.Query("goods_name"),
+		Weight:       c.Query("weight"),
+		Width:        types.StringToFloat(c.Query("width")),
+		Img:          c.Query("img"),
+		MeterPerKilo: types.StringToFloat(c.Query("meterPerKilo")),
 	}
 
 	_card.Create()
