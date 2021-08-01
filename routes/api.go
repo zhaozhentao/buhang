@@ -26,6 +26,7 @@ func Init() {
 
 	cic := controllers.CardItemsController{}
 	r.POST("/api/cardItems", cic.Create)
+	r.DELETE("/api/cardItems/:id", cic.Delete)
 
 	r.Static("/manager", "./public/manager")
 

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"buhang/config"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"time"
@@ -14,7 +15,7 @@ func (FilesController) Store(c *gin.Context) {
 
 	fileName := fmt.Sprintf("%d%s", time.Now().UnixNano()/1e6, file.Filename)
 
-	c.SaveUploadedFile(file, "./storage/images/"+fileName)
+	c.SaveUploadedFile(file, config.Viper.GetString("UPLOAD")+fileName)
 
 	c.String(200, fileName)
 }

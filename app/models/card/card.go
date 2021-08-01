@@ -9,10 +9,10 @@ type Card struct {
 	ID           uint64    `json:"id"`
 	CategoryId   uint64    `json:"category_id"`
 	Img          string    `json:"img"`
-	GoodsNumber  string    `json:"goods_number"`
-	GoodsName    string    `json:"goods_name"`
+	GoodsNumber  string    `json:"goodsNumber"`
+	GoodsName    string    `json:"goodsName"`
 	Weight       string    `json:"weight"`
-	MeterPerKilo float64   `json:"meter_per_kilo"`
+	MeterPerKilo float64   `json:"meterPerKilo"`
 	Width        float64   `json:"width"`
 	Sort         int       `json:"sort"`
 	CreatedAt    time.Time `json:"created_at"`

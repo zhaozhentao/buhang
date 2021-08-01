@@ -17,3 +17,8 @@ func (cc *CardItemsController) Create(c *gin.Context) {
 
 	cc.success(c, nil, "success")
 }
+
+func (cc *CardItemsController) Delete(c *gin.Context) {
+	card_item.Delete(c.Param("id"))
+	cc.success(c, nil, "success")
+}

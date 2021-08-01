@@ -2,9 +2,11 @@ package card_item
 
 import (
 	"buhang/bootstrap"
+	"buhang/config"
 	"buhang/pkg/types"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"os"
 )
 
 type CardItem struct {
@@ -39,6 +41,24 @@ func Create(images []string, cardId string) {
 	}
 
 	if err := bootstrap.DB.CreateInBatches(&items, len(items)).Error; err != nil {
+		fmt.Println(err)
+	}
+}
+
+func Show(id string) CardItem {
+	var cardItem CardItem
+	bootstrap.DB.First(&cardItem, id)
+	return cardItem
+}
+
+func Delete(id string) {
+	cardItem := Show(id)
+
+	filePath := config.Viper.GetString("UPLOAD") + cardItem.Image
+
+	os.Remove(filePath)
+
+	if err := bootstrap.DB.Delete(&cardItem).Error; err != nil {
 		fmt.Println(err)
 	}
 }
