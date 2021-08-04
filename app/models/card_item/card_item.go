@@ -6,6 +6,7 @@ import (
 	"buhang/pkg/types"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"os"
 )
 
@@ -18,6 +19,11 @@ type CardItem struct {
 
 func (CardItem) TableName() string {
 	return "card_item"
+}
+
+func (c *CardItem) AfterFind(tx *gorm.DB) (err error)  {
+    c.Image = config.Viper.GetString("IMAGE_PATH") + c.Image
+    return
 }
 
 func Items(cardId string) []CardItem {

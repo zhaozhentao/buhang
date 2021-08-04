@@ -29,6 +29,7 @@ func Init() {
 	r.DELETE("/api/cardItems/:id", cic.Delete)
 
 	r.Static("/manager", "./public/manager")
+	r.Static("/api/files", "./storage/images")
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

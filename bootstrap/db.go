@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"buhang/config"
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -12,8 +13,14 @@ var DB *gorm.DB
 func Init() {
 	var _ error
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=%t&loc=%s",
-		"root", "123456", "localhost", "3306", "bubu", "utf8", true, "Local")
+	dsn := fmt.Sprintf(
+		"%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=true&loc=Local",
+		config.Viper.GetString("DB_USERNAME"),
+		config.Viper.GetString("DB_PASSWORD"),
+		config.Viper.GetString("DB_HOST"),
+		config.Viper.GetString("DB_PORT"),
+		config.Viper.GetString("DB_DATABASE"),
+	)
 
 	gormConfig := mysql.New(mysql.Config{
 		DSN: dsn,
