@@ -22,9 +22,7 @@ func Init() {
 		config.Viper.GetString("DB_DATABASE"),
 	)
 
-	gormConfig := mysql.New(mysql.Config{
-		DSN: dsn,
-	})
+	gormConfig := mysql.New(mysql.Config{DSN: dsn})
 
 	var level gormlogger.LogLevel
 	DB, _ = gorm.Open(gormConfig, &gorm.Config{

@@ -2,6 +2,8 @@ package card
 
 import (
 	"buhang/bootstrap"
+	"buhang/config"
+	"gorm.io/gorm"
 	"time"
 )
 
@@ -17,6 +19,11 @@ type Card struct {
 	Sort         int       `json:"sort"`
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`
+}
+
+func (c *Card) AfterFind(tx *gorm.DB) (err error)  {
+	c.Img = config.Viper.GetString("IMAGE_PATH") + c.Img
+	return
 }
 
 func (Card) TableName() string {
@@ -35,10 +42,6 @@ func Index() []Card {
 
 	if err := bootstrap.DB.Find(&cards).Error; err != nil {
 		return cards
-	}
-
-	for i := range cards {
-		cards[i].Img = "http://www" + cards[i].Img
 	}
 
 	return cards
